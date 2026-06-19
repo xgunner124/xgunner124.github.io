@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAXVZ - 个人导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Avatar.png') center center / cover no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            backdrop-filter: brightness(0.6);
+        }
+
+        /* 新增顶部黑色标题框 */
+        .title-box {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            padding: 12px 60px;
+            border-radius: 16px;
+            border: 1px solid rgba(80, 150, 255, 0.25);
+        }
+
+        /* 主标题 TAXVZ 霓虹发光大字 */
+        .main-title {
+            font-size: 8vw;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 
+                0 0 10px #4096ff,
+                0 0 20px #4096ff,
+                0 0 40px #0066ff,
+                0 0 80px #0033ff;
+            letter-spacing: 12px;
+            user-select: none;
+        }
+
+        /* 新增个人简介样式 */
+        .intro-text {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2vw;
+            line-height: 2;
+            text-align: center;
+            text-shadow: 0 0 8px #2266bb;
+        }
+
+        /* 按钮容器网格布局 */
+        .btn-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            width: min(90%, 1000px);
+        }
+
+        /* 通用按钮样式 磨砂玻璃+渐变霓虹 */
+        .nav-btn {
+            padding: 16px 0;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 12px;
+            background: rgba(25, 35, 60, 0.45);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 170, 255, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 80, 255, 0.2);
+            /* 流动边框关键配置 */
+            position: relative;
+            overflow: hidden;
+        }
+        /* 流动边框伪元素 */
+        .nav-btn::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(#4096ff, #00ccff, #0066ff, #4096ff);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotateFlow 3s linear infinite;
+            z-index: -1;
+        }
+        /* 遮罩层，保留按钮磨砂底色 */
+        .nav-btn::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            border-radius: 10px;
+            background: rgba(25, 35, 60, 0.45);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+        /* 顺时针旋转动画 */
+        @keyframes rotateFlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 悬浮发光放大效果 + 开启流动边框 */
+        .nav-btn:hover {
+            transform: translateY(-6px) scale(1.03);
+            border-color: transparent;
+            box-shadow: 
+                0 0 15px #4096ff,
+                0 0 30px #0066ff,
+                0 8px 25px rgba(0, 80, 255, 0.4);
+            letter-spacing: 1px;
+        }
+        .nav-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* 底部小字备注 */
+        .tip-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 黑色标题框，内部放置发光大字 -->
+    <div class="title-box">
+        <h1 class="main-title">TAXVZ</h1>
+    </div>
+
+    <!-- 个人简介区域 -->
+    <div class="intro-text">
+        科技、游戏爱好者，喜欢研究数码、研究新鲜事物，<br>
+        Minecraft忠实玩家<br>
+        其他网站同名
+    </div>
+
+    <div class="btn-group">
+        <a href="https://space.bilibili.com/3546864408332521?spm_id_from=333.1007.0.0" target="_blank" class="nav-btn">Bilibili主页</a>
+        <a href="https://www.douyin.com/user/self?from_nav=1" target="_blank" class="nav-btn">抖音主页</a>
+        <a href="https://modrinth.com/user/TAXVZ" target="_blank" class="nav-btn">Modrinth</a>
+        <a href="https://center.mcmod.cn/1318158/" target="_blank" class="nav-btn">MC百科</a>
+        <a href="https://steamcommunity.com/profiles/76561199874523681" target="_blank" class="nav-btn">Steam</a>
+        <a href="https://github.com/xgunner124" target="_blank" class="nav-btn">GitHub</a>
+        <a href="https://pan.baidu.com/s/1womcGmw46FBP8stkC05JDA?pwd=qglz" target="_blank" class="nav-btn">百度网盘</a>
+        <a href="https://www.123pan.cn/123pan/HYMsvd-KqUVv?pwd=qglz" target="_blank" class="nav-btn">123网盘</a>
+    </div>
+
+    <div class="tip-text">点击按钮跳转对应平台主页</div>
+</body>
+</html>
